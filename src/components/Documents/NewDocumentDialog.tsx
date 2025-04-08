@@ -26,15 +26,18 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+// Define the schema with proper types
 const formSchema = z.object({
   title: z.string().min(3, { message: 'Title must be at least 3 characters' }),
   description: z.string().min(5, { message: 'Description must be at least 5 characters' }),
-  fileType: z.string(),
+  fileType: z.enum(['pdf', 'docx', 'xlsx', 'jpg', 'png', 'other']),
   fileSize: z.number().min(1, { message: 'File size must be specified' }),
-  status: z.string(),
+  status: z.enum(['draft', 'final', 'archived']),
   caseId: z.string().optional(),
   clientId: z.string().optional(),
 });
+
+type FormValues = z.infer<typeof formSchema>;
 
 interface NewDocumentDialogProps {
   open: boolean;
@@ -46,7 +49,7 @@ export const NewDocumentDialog: React.FC<NewDocumentDialogProps> = ({ open, onOp
   const { addDocument } = useDocument();
   const { cases, clients } = useCase();
   
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: '',
@@ -59,13 +62,13 @@ export const NewDocumentDialog: React.FC<NewDocumentDialogProps> = ({ open, onOp
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       if (!user) throw new Error('User not authenticated');
       
       await addDocument({
         ...values,
-        tags: [],
+        tags: [], // Ensure this is an array, not undefined
         createdBy: user.id,
         companyId: user.companyId || '',
         downloadUrl: '#',

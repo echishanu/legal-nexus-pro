@@ -4,7 +4,7 @@ import { useDocument, Document } from '@/contexts/DocumentContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { format } from 'date-fns';
 import { 
-  FilePdf, FileText, FileSpreadsheet, FileImage, 
+  File, FileText, FileSpreadsheet, FileImage, 
   FileIcon, MoreHorizontal, Download, Pencil, Trash2
 } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -79,7 +79,7 @@ export const DocumentList: React.FC<DocumentListProps> = ({ filterBy }) => {
   const getFileIcon = (fileType: string) => {
     switch (fileType) {
       case 'pdf':
-        return <FilePdf className="h-4 w-4 text-red-600" />;
+        return <File className="h-4 w-4 text-red-600" />;
       case 'docx':
         return <FileText className="h-4 w-4 text-blue-600" />;
       case 'xlsx':
