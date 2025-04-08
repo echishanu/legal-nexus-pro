@@ -75,7 +75,14 @@ export const NewClientDialog: React.FC<NewClientDialogProps> = ({ open, onOpenCh
       if (!user) throw new Error('User not authenticated');
       
       await addClient({
-        ...values,
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        address: values.address,
+        type: values.type,
+        status: values.status,
+        referralSource: values.referralSource || '',
+        notes: values.notes || '',
         companyId: user.companyId || '',
       });
       

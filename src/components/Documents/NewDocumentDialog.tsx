@@ -67,7 +67,13 @@ export const NewDocumentDialog: React.FC<NewDocumentDialogProps> = ({ open, onOp
       if (!user) throw new Error('User not authenticated');
       
       await addDocument({
-        ...values,
+        title: values.title,
+        description: values.description,
+        fileType: values.fileType,
+        fileSize: values.fileSize,
+        status: values.status,
+        caseId: values.caseId,
+        clientId: values.clientId,
         tags: [], // Ensure this is an array, not undefined
         createdBy: user.id,
         companyId: user.companyId || '',

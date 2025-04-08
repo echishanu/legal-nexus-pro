@@ -29,6 +29,7 @@ export const DeleteClientDialog: React.FC<DeleteClientDialogProps> = ({
   const handleDelete = async () => {
     try {
       await deleteClient(client.id);
+      toast.success('Client deleted successfully');
       onOpenChange(false);
     } catch (err) {
       toast.error('Failed to delete client');
