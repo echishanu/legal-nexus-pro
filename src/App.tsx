@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -12,6 +11,8 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/Layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
+import Cases from "./pages/Cases";
+import CaseDetail from "./pages/CaseDetail";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -31,8 +32,8 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<MainLayout />}>
                       <Route index element={<Dashboard />} />
-                      {/* Add more routes here as you build them */}
-                      <Route path="cases" element={<div className="p-8 text-center">Cases Module (Coming Soon)</div>} />
+                      <Route path="cases" element={<Cases />} />
+                      <Route path="cases/:id" element={<CaseDetail />} />
                       <Route path="documents" element={<div className="p-8 text-center">Documents Module (Coming Soon)</div>} />
                       <Route path="clients" element={<div className="p-8 text-center">Clients Module (Coming Soon)</div>} />
                       <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
