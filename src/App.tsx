@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -7,12 +8,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CompanyProvider } from "@/contexts/CompanyContext";
 import { CaseProvider } from "@/contexts/CaseContext";
+import { DocumentProvider } from "@/contexts/DocumentContext";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/Layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
 import Cases from "./pages/Cases";
 import CaseDetail from "./pages/CaseDetail";
+import Documents from "./pages/Documents";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -25,25 +28,27 @@ const App = () => {
           <AuthProvider>
             <CompanyProvider>
               <CaseProvider>
-                <Toaster />
-                <Sonner />
-                <BrowserRouter>
-                  <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/" element={<MainLayout />}>
-                      <Route index element={<Dashboard />} />
-                      <Route path="cases" element={<Cases />} />
-                      <Route path="cases/:id" element={<CaseDetail />} />
-                      <Route path="documents" element={<div className="p-8 text-center">Documents Module (Coming Soon)</div>} />
-                      <Route path="clients" element={<div className="p-8 text-center">Clients Module (Coming Soon)</div>} />
-                      <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
-                      <Route path="billing" element={<div className="p-8 text-center">Billing Module (Coming Soon)</div>} />
-                      <Route path="companies" element={<div className="p-8 text-center">Companies Module (Coming Soon)</div>} />
-                      <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
-                    </Route>
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </BrowserRouter>
+                <DocumentProvider>
+                  <Toaster />
+                  <Sonner />
+                  <BrowserRouter>
+                    <Routes>
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/" element={<MainLayout />}>
+                        <Route index element={<Dashboard />} />
+                        <Route path="cases" element={<Cases />} />
+                        <Route path="cases/:id" element={<CaseDetail />} />
+                        <Route path="documents" element={<Documents />} />
+                        <Route path="clients" element={<div className="p-8 text-center">Clients Module (Coming Soon)</div>} />
+                        <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
+                        <Route path="billing" element={<div className="p-8 text-center">Billing Module (Coming Soon)</div>} />
+                        <Route path="companies" element={<div className="p-8 text-center">Companies Module (Coming Soon)</div>} />
+                        <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
+                      </Route>
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </BrowserRouter>
+                </DocumentProvider>
               </CaseProvider>
             </CompanyProvider>
           </AuthProvider>
