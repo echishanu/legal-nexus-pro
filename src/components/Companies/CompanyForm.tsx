@@ -85,8 +85,16 @@ const CompanyForm: React.FC<CompanyFormProps> = ({ companyId, onComplete }) => {
       } else {
         // Ensure all properties required by the Company type are provided
         const newCompany = {
-          ...data,
           id: `company-${Date.now()}`, // Generate a temporary ID
+          name: data.name,
+          address: data.address,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode,
+          phone: data.phone,
+          email: data.email,
+          website: data.website || '',
+          logoUrl: data.logoUrl || '',
         };
         
         await addCompany(newCompany);
