@@ -55,7 +55,7 @@ const CompanyFilters: React.FC<CompanyFiltersProps> = ({ companies, onFilter }) 
           <SelectValue placeholder="Filter by state" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="">All States</SelectItem>
+          <SelectItem value="all">All States</SelectItem>
           {states.map(state => (
             <SelectItem key={state} value={state}>
               {state}

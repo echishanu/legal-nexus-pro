@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   Table,
@@ -14,7 +13,6 @@ import EditCompanyDialog from './EditCompanyDialog';
 import DeleteCompanyDialog from './DeleteCompanyDialog';
 import { Button } from '@/components/ui/button';
 import { Edit, Trash2, Users } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import CompanyFilters from './CompanyFilters';
 import ViewEmployeesDialog from './ViewEmployeesDialog';
 
