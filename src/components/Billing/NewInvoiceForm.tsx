@@ -83,8 +83,12 @@ const NewInvoiceForm: React.FC = () => {
         status: data.status,
         notes: data.notes,
         items: data.items.map(item => ({
-          ...item,
           id: item.id || `new-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          description: item.description,  // Ensure this is required
+          quantity: item.quantity,        // Ensure this is required
+          rate: item.rate,                // Ensure this is required
+          amount: item.amount,            // Ensure this is required
+          timeEntryId: item.timeEntryId
         })),
         amount: subtotal,
         tax: tax,

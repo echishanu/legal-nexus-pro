@@ -72,7 +72,15 @@ const BillingRateForm: React.FC<BillingRateFormProps> = ({ rateId, onComplete })
       if (rateId) {
         await updateBillingRate(rateId, data);
       } else {
-        await addBillingRate(data);
+        // Make sure all required properties are present
+        const newRate = {
+          name: data.name,
+          amount: data.amount,
+          type: data.type,
+          description: data.description
+        };
+        
+        await addBillingRate(newRate);
       }
       
       onComplete();
