@@ -10,6 +10,7 @@ import { CompanyProvider } from "@/contexts/CompanyContext";
 import { CaseProvider } from "@/contexts/CaseContext";
 import { DocumentProvider } from "@/contexts/DocumentContext";
 import { ClientProvider } from "@/contexts/ClientContext";
+import { BillingProvider } from "@/contexts/BillingContext";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./components/Layout/MainLayout";
@@ -18,6 +19,7 @@ import Cases from "./pages/Cases";
 import CaseDetail from "./pages/CaseDetail";
 import Documents from "./pages/Documents";
 import Clients from "./pages/Clients";
+import Billing from "./pages/Billing";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -32,25 +34,27 @@ const App = () => {
               <CaseProvider>
                 <DocumentProvider>
                   <ClientProvider>
-                    <Toaster />
-                    <Sonner />
-                    <BrowserRouter>
-                      <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/" element={<MainLayout />}>
-                          <Route index element={<Dashboard />} />
-                          <Route path="cases" element={<Cases />} />
-                          <Route path="cases/:id" element={<CaseDetail />} />
-                          <Route path="documents" element={<Documents />} />
-                          <Route path="clients" element={<Clients />} />
-                          <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
-                          <Route path="billing" element={<div className="p-8 text-center">Billing Module (Coming Soon)</div>} />
-                          <Route path="companies" element={<div className="p-8 text-center">Companies Module (Coming Soon)</div>} />
-                          <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
-                        </Route>
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
-                    </BrowserRouter>
+                    <BillingProvider>
+                      <Toaster />
+                      <Sonner />
+                      <BrowserRouter>
+                        <Routes>
+                          <Route path="/login" element={<Login />} />
+                          <Route path="/" element={<MainLayout />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path="cases" element={<Cases />} />
+                            <Route path="cases/:id" element={<CaseDetail />} />
+                            <Route path="documents" element={<Documents />} />
+                            <Route path="clients" element={<Clients />} />
+                            <Route path="billing" element={<Billing />} />
+                            <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
+                            <Route path="companies" element={<div className="p-8 text-center">Companies Module (Coming Soon)</div>} />
+                            <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
+                          </Route>
+                          <Route path="*" element={<NotFound />} />
+                        </Routes>
+                      </BrowserRouter>
+                    </BillingProvider>
                   </ClientProvider>
                 </DocumentProvider>
               </CaseProvider>
