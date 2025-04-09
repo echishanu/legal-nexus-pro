@@ -20,6 +20,7 @@ import CaseDetail from "./pages/CaseDetail";
 import Documents from "./pages/Documents";
 import Clients from "./pages/Clients";
 import Billing from "./pages/Billing";
+import Companies from "./pages/Companies";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -48,7 +49,7 @@ const App = () => {
                             <Route path="clients" element={<Clients />} />
                             <Route path="billing" element={<Billing />} />
                             <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
-                            <Route path="companies" element={<div className="p-8 text-center">Companies Module (Coming Soon)</div>} />
+                            <Route path="companies" element={<Companies />} />
                             <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
                           </Route>
                           <Route path="*" element={<NotFound />} />

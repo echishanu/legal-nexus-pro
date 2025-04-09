@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import { toast } from 'sonner';
 
 export interface Company {
   id: string;
@@ -32,6 +33,9 @@ interface CompanyContextType {
   setCurrentCompany: (company: Company) => void;
   employees: Employee[];
   isLoading: boolean;
+  addCompany: (company: Company) => Promise<void>;
+  updateCompany: (id: string, data: Partial<Company>) => Promise<void>;
+  deleteCompany: (id: string) => Promise<void>;
 }
 
 const CompanyContext = createContext<CompanyContextType | undefined>(undefined);
@@ -167,6 +171,61 @@ export const CompanyProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
   }, [user]);
 
+  const addCompany = async (company: Company): Promise<void> => {
+    try {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // In a real app, we would send this to an API
+      setCompanies(prevCompanies => [...prevCompanies, company]);
+    } catch (error) {
+      console.error('Error adding company:', error);
+      throw error;
+    }
+  };
+
+  const updateCompany = async (id: string, data: Partial<Company>): Promise<void> => {
+    try {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // In a real app, we would send this to an API
+      setCompanies(prevCompanies =>
+        prevCompanies.map(company =>
+          company.id === id ? { ...company, ...data } : company
+        )
+      );
+      
+      // Update current company if it's the one being edited
+      if (currentCompany && currentCompany.id === id) {
+        setCurrentCompany(prev => ({ ...prev!, ...data }));
+      }
+    } catch (error) {
+      console.error('Error updating company:', error);
+      throw error;
+    }
+  };
+
+  const deleteCompany = async (id: string): Promise<void> => {
+    try {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // In a real app, we would send this to an API
+      setCompanies(prevCompanies =>
+        prevCompanies.filter(company => company.id !== id)
+      );
+      
+      // Reset current company if it's the one being deleted
+      if (currentCompany && currentCompany.id === id) {
+        setCurrentCompany(companies.length > 1 ? companies.find(c => c.id !== id) || null : null);
+      }
+    } catch (error) {
+      console.error('Error deleting company:', error);
+      throw error;
+    }
+  };
+
   return (
     <CompanyContext.Provider value={{
       companies,
@@ -174,6 +233,9 @@ export const CompanyProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setCurrentCompany,
       employees,
       isLoading,
+      addCompany,
+      updateCompany,
+      deleteCompany,
     }}>
       {children}
     </CompanyContext.Provider>
