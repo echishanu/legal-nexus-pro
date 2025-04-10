@@ -21,6 +21,7 @@ import Documents from "./pages/Documents";
 import Clients from "./pages/Clients";
 import Billing from "./pages/Billing";
 import Companies from "./pages/Companies";
+import Settings from "./pages/Settings";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient();
@@ -50,7 +51,7 @@ const App = () => {
                             <Route path="billing" element={<Billing />} />
                             <Route path="calendar" element={<div className="p-8 text-center">Calendar Module (Coming Soon)</div>} />
                             <Route path="companies" element={<Companies />} />
-                            <Route path="settings" element={<div className="p-8 text-center">Settings Module (Coming Soon)</div>} />
+                            <Route path="settings" element={<Settings />} />
                           </Route>
                           <Route path="*" element={<NotFound />} />
                         </Routes>
